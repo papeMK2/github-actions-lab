@@ -1,0 +1,16 @@
+name: use fromJson
+
+on:
+  workflow_dispatch:
+
+jobs:
+  parse-json:
+    runs-on: ubuntu-latest
+    env:
+      MY_JSON: '{"name": "Alice", "age": 30}'
+    steps:
+      - name: Parse and print JSON from variable
+        run: echo '${{ toJson(fromJson(env.MY_JSON)) }}'
+
+      - name: Parse and print JSON from env
+        run: echo '${{ toJson(fromJson(vars.MY_JSON)) }}'
